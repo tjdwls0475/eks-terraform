@@ -1,0 +1,18 @@
+# EKS 설치 후
+1. Calico 설치
+2. Istio 설치
+3. AWS-LB-Controller 설치(Nginx proxy 포함)
+4. Metrics API 설치
+
+# Calico 설치 시 주의사항
+tigera-operator를 이용해서 설치 및 삭제 작업 시에도 상당한 시간이 소요된다. aws-lb-controller를 이용하듯이 log를 확인할 것.
+tigera-operator 이용 시에는 aws-cni를 걷어내더라도 설치가 바로 진행 안될 수 있다. 이럴 경우에는 helm 삭제하고 재설치하면 된다. 또는 worker node도 제거
+tigera-oprator가 calico-system 네임스페이스를 만들고 할 일을 다 하는데 시간이 10분은 걸리는 것으로 예상된다.
+
+# Metrics API
+Calico CNI 위에서도 hostNetwork를 이용하면 매우 잘 작동한다.
+1) git download
+2) cd charts/metrics-server
+3) vi values.yaml -> port를 10250에서 4443으로 change
+4) helm 배포
+
