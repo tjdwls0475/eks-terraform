@@ -1,2 +1,2 @@
 # eks-terraform
-just before making cluster
+vpc + igw + subnet + sg + ec2 + iam
